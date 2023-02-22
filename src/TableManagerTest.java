@@ -32,6 +32,15 @@ public class TableManagerTest {
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
 
+    assertEquals(StatusCode.TABLE_CREATION_ATTRIBUTE_INVALID, tableManager.createTable(EmployeeTableName, null, null, null));
+    assertEquals(StatusCode.TABLE_CREATION_ATTRIBUTE_INVALID,
+        tableManager.createTable(EmployeeTableName, EmployeeTableAttributeNames, null, EmployeeTablePKAttributes));
+    assertEquals(StatusCode.TABLE_CREATION_ATTRIBUTE_INVALID,
+        tableManager.createTable(EmployeeTableName, null, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
+    assertEquals(StatusCode.TABLE_CREATION_PRIMARY_KEY_NOT_FOUND,
+        tableManager.createTable(EmployeeTableName, EmployeeTableAttributeNames,
+            EmployeeTableAttributeTypes, new String[]{"ManagerSSN", "SSN"}));
+
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
         EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
 

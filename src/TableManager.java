@@ -61,4 +61,10 @@ public interface TableManager {
    * @return status code
    */
   public StatusCode dropAttribute(String tableName, String attributeName);
+
+  /**
+   * Drop all tables in the database
+   * @return status code
+   */
+  public StatusCode dropAllTables();
 }

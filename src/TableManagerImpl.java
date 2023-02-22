@@ -36,4 +36,10 @@ public class TableManagerImpl implements TableManager{
     // your code
     return StatusCode.SUCCESS;
   }
+
+  @Override
+  public StatusCode dropAllTables() {
+    // your code
+    return StatusCode.SUCCESS;
+  }
 }

@@ -49,6 +49,7 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
+    tableManager.dropAllTables();
   }
 
   /**
@@ -63,6 +64,7 @@ public class TableManagerTest {
 
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertTrue(tables.isEmpty());
+    tableManager.dropAllTables();
   }
 
   /**
@@ -83,6 +85,7 @@ public class TableManagerTest {
     assertEquals(2, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
     assertEquals(DepartmentTable, tables.get(DepartmentTableName));
+    tableManager.dropAllTables();
   }
 
   /**
@@ -111,6 +114,7 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
+    tableManager.dropAllTables();
   }
 
   /**
@@ -154,6 +158,7 @@ public class TableManagerTest {
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
     assertEquals(DepartmentTable, tables.get(DepartmentTableName));
     assertEquals(WorksForTable, tables.get(WorksForTableName));
+    tableManager.dropAllTables();
   }
 
   /**
@@ -181,6 +186,7 @@ public class TableManagerTest {
     }
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(expectTables, tables);
+    tableManager.dropAllTables();
   }
 
   /**
@@ -211,5 +217,6 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(employeeTable, tables.get(EmployeeTableName));
+    tableManager.dropAllTables();
   }
 }

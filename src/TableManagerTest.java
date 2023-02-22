@@ -2,18 +2,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+import org.w3c.dom.Attr;
 
 import java.util.HashMap;
 
 public class TableManagerTest {
   public static String EmployeeTableName = "Employee";
   public static String[] EmployeeTableAttributeNames = new String[]{"SSN", "Name"};
-  public static String[] EmployeeTableAttributeTypes = new String[]{"INT", "VARCHAR"};
+  public static AttributeType[] EmployeeTableAttributeTypes =
+      new AttributeType[]{AttributeType.INT, AttributeType.VARCHAR};
   public static String[] EmployeeTablePKAttributes = new String[]{"SSN"};
 
   public static String DepartmentTableName = "Department";
   public static String[] DepartmentTableAttributeNames = new String[]{"Dno", "DName", "Floor"};
-  public static String[] DepartmentTableAttributeTypes = new String[]{"INT", "VARCHAR", "INT"};
+  public static AttributeType[] DepartmentTableAttributeTypes = new AttributeType[]{AttributeType.INT,
+      AttributeType.VARCHAR, AttributeType.INT};
   public static String[] DepartmentTablePKAttributes = new String[]{"Dno"};
 
   private TableManager tableManager;
@@ -50,11 +53,6 @@ public class TableManagerTest {
 
   @Test
   public void unitTest3() {
-    String EmployeeTableName = "Employee";
-    String[] EmployeeTableAttributeNames = new String[]{"SSN", "Name"};
-    String[] EmployeeTableAttributeTypes = new String[]{"INT", "VARCHAR"};
-    String[] EmployeeTablePKAttributes = new String[]{"SSN"};
-
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
     TableMetadata DepartmentTable = new TableMetadata(DepartmentTableAttributeNames,
@@ -79,9 +77,9 @@ public class TableManagerTest {
         EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
 
     String EmployeeBirthdayAttribute = "Birthday";
-    String EmployeeBirthdayType = "VARCHAR";
+    AttributeType EmployeeBirthdayType = AttributeType.VARCHAR;
     String EmployeeAddressAttribute = "Address";
-    String EmployeeAddressType = "VARCHAR";
+    AttributeType EmployeeAddressType = AttributeType.VARCHAR;
 
     assertEquals(StatusCode.SUCCESS, tableManager.addAttribute(EmployeeTableName,
         EmployeeBirthdayAttribute, EmployeeBirthdayType));
@@ -99,17 +97,19 @@ public class TableManagerTest {
   public void unitTest5() {
     String EmployeeTableName = "Employee";
     String[] EmployeeTableAttributeNames = new String[]{"SSN", "Name", "Address", "Birthday"};
-    String[] EmployeeTableAttributeTypes = new String[]{"INT", "VARCHAR", "VARCHAR", "VARCHAR"};
+    AttributeType[] EmployeeTableAttributeTypes = new AttributeType[]{AttributeType.INT, AttributeType.VARCHAR,
+        AttributeType.VARCHAR, AttributeType.VARCHAR};
     String[] EmployeeTablePKAttributes = new String[]{"SSN"};
 
     String DepartmentTableName = "Department";
     String[] DepartmentTableAttributeNames = new String[]{"Dno", "DName", "Floor", "ManagerSSN"};
-    String[] DepartmentTableAttributeTypes = new String[]{"INT", "VARCHAR", "INT", "INT"};
+    AttributeType[] DepartmentTableAttributeTypes = new AttributeType[]{AttributeType.INT, AttributeType.VARCHAR,
+        AttributeType.INT, AttributeType.INT};
     String[] DepartmentTablePKAttributes = new String[]{"Dno"};
 
     String WorksForTableName = "WorksFor";
     String[] WorksForTableAttributeNames = new String[]{"SSN", "Dno"};
-    String[] WorksForTableAttributeTypes = new String[]{"INT", "INT"};
+    AttributeType[] WorksForTableAttributeTypes = new AttributeType[]{AttributeType.INT, AttributeType.INT};
     String[] WorksForTablePKAttributes = new String[]{"SSN", "Dno"};
 
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
@@ -167,17 +167,16 @@ public class TableManagerTest {
     for (int i = 0; i < 1000; i++) {
       String attributeName = "attr"+i;
       if (i % 2 == 0) {
-        employeeTable.addAttribute(attributeName, "INT");
+        employeeTable.addAttribute(attributeName, AttributeType.INT);
       }
       assertEquals(StatusCode.SUCCESS, tableManager.addAttribute(EmployeeTableName, attributeName,
-          "INT"));
+          AttributeType.INT));
     }
 
     for (int i = 0; i < 1000; i++) {
       if (i % 2 == 1) {
         String attributeName = "attr"+i;
-        assertEquals(StatusCode.SUCCESS, tableManager.addAttribute(EmployeeTableName, attributeName,
-            "INT"));
+        assertEquals(StatusCode.SUCCESS, tableManager.addAttribute(EmployeeTableName, attributeName, AttributeType.INT));
       }
     }
     HashMap<String, TableMetadata> tables = tableManager.listTables();

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class TableManagerImpl implements TableManager{
 
   @Override
-  public StatusCode createTable(String tableName, String[] attributeNames, String[] attributeType,
+  public StatusCode createTable(String tableName, String[] attributeNames, AttributeType[] attributeType,
                          String[] primaryKeyAttributeNames) {
     // your code
     return StatusCode.SUCCESS;
@@ -26,7 +26,7 @@ public class TableManagerImpl implements TableManager{
   }
 
   @Override
-  public StatusCode addAttribute(String tableName, String attributeName, String attributeType) {
+  public StatusCode addAttribute(String tableName, String attributeName, AttributeType attributeType) {
     // your code
     return StatusCode.SUCCESS;
   }

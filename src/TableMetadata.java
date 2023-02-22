@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+
 /**
- * TableMetadata defines the view of the TableMetadata in system.
+ * TableMetadata defines the view of the table's metadata in system.
  */
 public class TableMetadata {
 
   // Map from AttributeName to AttributeType
-  private HashMap<String, String> attributes;
+  private HashMap<String, AttributeType> attributes;
 
   // A list contains names of the primary key attribute.
   private List<String> primaryKeys;
@@ -33,7 +34,7 @@ public class TableMetadata {
     primaryKeys = new ArrayList<>();
   }
 
-  public TableMetadata(String[] attributeNames, String[] attributeTypes, String[] primaryKeys) {
+  public TableMetadata(String[] attributeNames, AttributeType[] attributeTypes, String[] primaryKeys) {
     attributes = new HashMap<>();
     for (int i = 0; i < attributeTypes.length; i++) {
       attributes.put(attributeNames[i], attributeTypes[i]);
@@ -45,15 +46,15 @@ public class TableMetadata {
     return attributes.containsKey(attributeName);
   }
 
-  public void addAttribute(String attributeName, String attributeType) {
+  public void addAttribute(String attributeName, AttributeType attributeType) {
     attributes.put(attributeName, attributeType);
   }
 
-  public HashMap<String, String> getAttributes() {
+  public HashMap<String, AttributeType> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(HashMap<String, String> attributes) {
+  public void setAttributes(HashMap<String, AttributeType> attributes) {
     this.attributes = attributes;
   }
 

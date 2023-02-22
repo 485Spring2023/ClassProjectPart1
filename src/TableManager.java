@@ -19,7 +19,7 @@ public interface TableManager {
    * @param primaryKeyAttributeNames the list of name of the primary-key attributes
    * @return status code, see {#StatusCode}
    */
-  public StatusCode createTable(String tableName, String[] attributeNames, String[] attributeType, String[] primaryKeyAttributeNames);
+  public StatusCode createTable(String tableName, String[] attributeNames, AttributeType[] attributeType, String[] primaryKeyAttributeNames);
 
 
   /**
@@ -49,7 +49,7 @@ public interface TableManager {
    * @param attributeType the type of the attribute to be added
    * @return status code
    */
-  public StatusCode addAttribute(String tableName, String attributeName, String attributeType);
+  public StatusCode addAttribute(String tableName, String attributeName, AttributeType attributeType);
 
   /**
    * Drop an existing attribute in a table

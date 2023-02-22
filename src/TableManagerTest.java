@@ -53,7 +53,7 @@ public class TableManagerTest {
   }
 
   /**
-   * Points: 10
+   * Points: 15
    */
   @Test
   public void unitTest2() {
@@ -190,7 +190,7 @@ public class TableManagerTest {
   }
 
   /**
-   * Points: 20
+   * Points: 15
    */
   @Test
   public void unitTest7() {

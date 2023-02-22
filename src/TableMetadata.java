@@ -62,8 +62,15 @@ public class TableMetadata {
     return primaryKeys;
   }
 
-  public void setPrimaryKeys(List<String> primaryKeys) {
+  public StatusCode setPrimaryKeys(List<String> primaryKeys) {
+    for (String pk : primaryKeys) {
+      if (!attributes.containsKey(pk)) {
+        return StatusCode.ATTRIBUTE_NOT_FOUND;
+      }
+    }
+
     this.primaryKeys = primaryKeys;
+    return StatusCode.SUCCESS;
   }
 
 }

@@ -205,7 +205,7 @@ public class TableManagerTest {
     for (int i = 0; i < 1000; i++) {
       if (i % 2 == 1) {
         String attributeName = "attr"+i;
-        assertEquals(StatusCode.SUCCESS, tableManager.addAttribute(EmployeeTableName, attributeName, AttributeType.INT));
+        assertEquals(StatusCode.SUCCESS, tableManager.dropAttribute(EmployeeTableName, attributeName));
       }
     }
     HashMap<String, TableMetadata> tables = tableManager.listTables();

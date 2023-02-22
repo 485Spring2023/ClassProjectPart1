@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class Table {
+/**
+ * TableMetadata defines the view of the TableMetadata in system.
+ */
+public class TableMetadata {
 
   // Map from AttributeName to AttributeType
   private HashMap<String, String> attributes;
@@ -16,7 +19,7 @@ public class Table {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Table table = (Table) o;
+    TableMetadata table = (TableMetadata) o;
     return Objects.equals(attributes, table.attributes) && Objects.equals(primaryKeys, table.primaryKeys);
   }
 
@@ -25,12 +28,12 @@ public class Table {
     return Objects.hash(attributes, primaryKeys);
   }
 
-  public Table() {
+  public TableMetadata() {
     attributes = new HashMap<>();
     primaryKeys = new ArrayList<>();
   }
 
-  public Table(String[] attributeNames, String[] attributeTypes, String[] primaryKeys) {
+  public TableMetadata(String[] attributeNames, String[] attributeTypes, String[] primaryKeys) {
     attributes = new HashMap<>();
     for (int i = 0; i < attributeTypes.length; i++) {
       attributes.put(attributeNames[i], attributeTypes[i]);
@@ -38,7 +41,7 @@ public class Table {
     this.primaryKeys = Arrays.asList(primaryKeys);
   }
 
-  public boolean isAttributeExist(String attributeName) {
+  public boolean doesAttributeExist(String attributeName) {
     return attributes.containsKey(attributeName);
   }
 

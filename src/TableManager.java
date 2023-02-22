@@ -1,6 +1,9 @@
 import java.util.HashMap;
-import java.util.List;
 
+/**
+ * TableManager defines the interfaces that need to be implemented to support the table
+ * management features.
+ */
 public interface TableManager {
 
   /**
@@ -16,7 +19,7 @@ public interface TableManager {
    * @param primaryKeyAttributeNames the list of name of the primary-key attributes
    * @return status code, see {#StatusCode}
    */
-  public int createTable(String tableName, String[] attributeNames, String[] attributeType, String[] primaryKeyAttributeNames);
+  public StatusCode createTable(String tableName, String[] attributeNames, String[] attributeType, String[] primaryKeyAttributeNames);
 
 
   /**
@@ -26,14 +29,14 @@ public interface TableManager {
    * @param tableName the table's name
    * @return status code
    */
-  public int deleteTable(String tableName);
+  public StatusCode deleteTable(String tableName);
 
 
   /**
    * List all existing tables
    * @return the map from tableName to table instance
    */
-  public HashMap<String, Table> listTables();
+  public HashMap<String, TableMetadata> listTables();
 
   /**
    * Add a new attribute to a table
@@ -46,7 +49,7 @@ public interface TableManager {
    * @param attributeType the type of the attribute to be added
    * @return status code
    */
-  public int addAttribute(String tableName, String attributeName, String attributeType);
+  public StatusCode addAttribute(String tableName, String attributeName, String attributeType);
 
   /**
    * Drop an existing attribute in a table
@@ -57,5 +60,5 @@ public interface TableManager {
    * @param attributeName the name of the attribute to be dropped
    * @return status code
    */
-  public int dropAttribute(String tableName, String attributeName);
+  public StatusCode dropAttribute(String tableName, String attributeName);
 }

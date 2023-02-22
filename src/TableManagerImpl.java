@@ -1,32 +1,39 @@
 import java.util.HashMap;
-import java.util.List;
 
-// your code
+/**
+ * TableManagerImpl implements interfaces in {#TableManager}. You should put your implementation
+ * in this class.
+ */
 public class TableManagerImpl implements TableManager{
 
   @Override
-  public int createTable(String tableName, String[] attributeNames, String[] attributeType,
+  public StatusCode createTable(String tableName, String[] attributeNames, String[] attributeType,
                          String[] primaryKeyAttributeNames) {
-    return 0;
+    // your code
+    return StatusCode.SUCCESS;
   }
 
   @Override
-  public int deleteTable(String tableName) {
-    return 0;
+  public StatusCode deleteTable(String tableName) {
+    // your code
+    return StatusCode.SUCCESS;
   }
 
   @Override
-  public HashMap<String, Table> listTables() {
+  public HashMap<String, TableMetadata> listTables() {
+    // your code
     return null;
   }
 
   @Override
-  public int addAttribute(String tableName, String attributeName, String attributeType) {
-    return 0;
+  public StatusCode addAttribute(String tableName, String attributeName, String attributeType) {
+    // your code
+    return StatusCode.SUCCESS;
   }
 
   @Override
-  public int dropAttribute(String tableName, String attributeName) {
-    return 0;
+  public StatusCode dropAttribute(String tableName, String attributeName) {
+    // your code
+    return StatusCode.SUCCESS;
   }
 }

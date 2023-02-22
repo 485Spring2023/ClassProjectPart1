@@ -1,11 +1,16 @@
-public class StatusCode {
+/**
+ * StatusCode defines the status code that may returns by the {TableManager}
+ */
+public enum StatusCode {
 
-  public static int SUCCESS = 0;
-  public static int TABLE_ALREADY_EXISTS = 1;
-  public static int TABLE_CREATION_NO_ATTRIBUTE = 2;
-  public static int TABLE_CREATION_NO_PRIMARY_KEY = 3;
-  public static int ATTRIBUTE_TYPE_NOT_SUPPORTED = 4;
-  public static int TABLE_NOT_FOUND = 5;
-  public static int ATTRIBUTE_ALREADY_EXISTS = 6;
-  public static int ATTRIBUTE_NOT_FOUND = 7;
+  SUCCESS,
+  TABLE_ALREADY_EXISTS,
+  TABLE_CREATION_NO_ATTRIBUTE,
+  TABLE_CREATION_NO_PRIMARY_KEY,
+  TABLE_CREATION_PRIMARY_KEY_NOT_FOUND,
+  ATTRIBUTE_TYPE_NOT_SUPPORTED,
+  TABLE_NOT_FOUND,
+  ATTRIBUTE_ALREADY_EXISTS,
+  ATTRIBUTE_NOT_FOUND
+
 }

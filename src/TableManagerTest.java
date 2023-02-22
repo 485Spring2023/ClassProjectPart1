@@ -26,9 +26,11 @@ public class TableManagerTest {
     tableManager = new TableManagerImpl();
   }
 
+  /**
+   * Points: 10
+   */
   @Test
   public void unitTest1() {
-
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
 
@@ -49,6 +51,9 @@ public class TableManagerTest {
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
   }
 
+  /**
+   * Points: 10
+   */
   @Test
   public void unitTest2() {
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
@@ -60,6 +65,9 @@ public class TableManagerTest {
     assertTrue(tables.isEmpty());
   }
 
+  /**
+   * Points: 15
+   */
   @Test
   public void unitTest3() {
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
@@ -77,6 +85,9 @@ public class TableManagerTest {
     assertEquals(DepartmentTable, tables.get(DepartmentTableName));
   }
 
+  /**
+   * Points: 15
+   */
   @Test
   public void unitTest4() {
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
@@ -102,6 +113,9 @@ public class TableManagerTest {
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
   }
 
+  /**
+   * Points: 15
+   */
   @Test
   public void unitTest5() {
     String EmployeeTableName = "Employee";
@@ -142,6 +156,9 @@ public class TableManagerTest {
     assertEquals(WorksForTable, tables.get(WorksForTableName));
   }
 
+  /**
+   * Points: 15
+   */
   @Test
   public void unitTest6() {
     HashMap<String, TableMetadata> expectTables = new HashMap<>();
@@ -166,6 +183,9 @@ public class TableManagerTest {
     assertEquals(expectTables, tables);
   }
 
+  /**
+   * Points: 20
+   */
   @Test
   public void unitTest7() {
     TableMetadata employeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,

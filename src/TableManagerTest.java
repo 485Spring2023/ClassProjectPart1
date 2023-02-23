@@ -31,6 +31,8 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest1() {
+    tableManager.dropAllTables();
+
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
 
@@ -49,7 +51,6 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
-    tableManager.dropAllTables();
   }
 
   /**
@@ -57,6 +58,8 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest2() {
+    tableManager.dropAllTables();
+
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
         EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
     assertEquals(StatusCode.TABLE_NOT_FOUND, tableManager.deleteTable("department"));
@@ -64,7 +67,6 @@ public class TableManagerTest {
 
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertTrue(tables.isEmpty());
-    tableManager.dropAllTables();
   }
 
   /**
@@ -72,6 +74,8 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest3() {
+    tableManager.dropAllTables();
+
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
     TableMetadata DepartmentTable = new TableMetadata(DepartmentTableAttributeNames,
@@ -85,7 +89,6 @@ public class TableManagerTest {
     assertEquals(2, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
     assertEquals(DepartmentTable, tables.get(DepartmentTableName));
-    tableManager.dropAllTables();
   }
 
   /**
@@ -93,6 +96,8 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest4() {
+    tableManager.dropAllTables();
+
     TableMetadata EmployeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
 
@@ -114,7 +119,6 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
-    tableManager.dropAllTables();
   }
 
   /**
@@ -122,6 +126,8 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest5() {
+    tableManager.dropAllTables();
+
     String EmployeeTableName = "Employee";
     String[] EmployeeTableAttributeNames = new String[]{"SSN", "Name", "Address", "Birthday"};
     AttributeType[] EmployeeTableAttributeTypes = new AttributeType[]{AttributeType.INT, AttributeType.VARCHAR,
@@ -158,7 +164,6 @@ public class TableManagerTest {
     assertEquals(EmployeeTable, tables.get(EmployeeTableName));
     assertEquals(DepartmentTable, tables.get(DepartmentTableName));
     assertEquals(WorksForTable, tables.get(WorksForTableName));
-    tableManager.dropAllTables();
   }
 
   /**
@@ -166,8 +171,12 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest6() {
+    tableManager.dropAllTables();
+
+    int numberOfTables = 1000;
+
     HashMap<String, TableMetadata> expectTables = new HashMap<>();
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < numberOfTables; i++) {
       String employTableName = EmployeeTableName + i;
       assertEquals(StatusCode.SUCCESS, tableManager.createTable(employTableName,
           EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
@@ -178,7 +187,7 @@ public class TableManagerTest {
       }
     }
 
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < numberOfTables; i++) {
       if (i % 2 == 0) {
         String tblName = EmployeeTableName + i;
         assertEquals(StatusCode.SUCCESS, tableManager.deleteTable(tblName));
@@ -186,7 +195,6 @@ public class TableManagerTest {
     }
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(expectTables, tables);
-    tableManager.dropAllTables();
   }
 
   /**
@@ -194,12 +202,15 @@ public class TableManagerTest {
    */
   @Test
   public void unitTest7() {
+    tableManager.dropAllTables();
+    int numberOfAttributes = 1000;
+
     TableMetadata employeeTable = new TableMetadata(EmployeeTableAttributeNames, EmployeeTableAttributeTypes,
         EmployeeTablePKAttributes);
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
         EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
 
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < numberOfAttributes; i++) {
       String attributeName = "attr"+i;
       if (i % 2 == 0) {
         employeeTable.addAttribute(attributeName, AttributeType.INT);
@@ -208,7 +219,7 @@ public class TableManagerTest {
           AttributeType.INT));
     }
 
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < numberOfAttributes; i++) {
       if (i % 2 == 1) {
         String attributeName = "attr"+i;
         assertEquals(StatusCode.SUCCESS, tableManager.dropAttribute(EmployeeTableName, attributeName));
@@ -217,6 +228,5 @@ public class TableManagerTest {
     HashMap<String, TableMetadata> tables = tableManager.listTables();
     assertEquals(1, tables.size());
     assertEquals(employeeTable, tables.get(EmployeeTableName));
-    tableManager.dropAllTables();
   }
 }

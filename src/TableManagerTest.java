@@ -175,6 +175,7 @@ public class TableManagerTest {
 
     int numberOfTables = 1000;
 
+    assertEquals(StatusCode.TABLE_NOT_FOUND, tableManager.deleteTable("Employee"));
     HashMap<String, TableMetadata> expectTables = new HashMap<>();
     for (int i = 0; i < numberOfTables; i++) {
       String employTableName = EmployeeTableName + i;
@@ -209,6 +210,9 @@ public class TableManagerTest {
         EmployeeTablePKAttributes);
     assertEquals(StatusCode.SUCCESS, tableManager.createTable(EmployeeTableName,
         EmployeeTableAttributeNames, EmployeeTableAttributeTypes, EmployeeTablePKAttributes));
+    assertEquals(StatusCode.TABLE_NOT_FOUND, tableManager.addAttribute("Department", "a", AttributeType.INT));
+    assertEquals(StatusCode.ATTRIBUTE_ALREADY_EXISTS, tableManager.addAttribute(EmployeeTableName, "SSN", AttributeType.INT));
+    assertEquals(StatusCode.ATTRIBUTE_NOT_FOUND, tableManager.dropAttribute(EmployeeTableName, "Salary"));
 
     for (int i = 0; i < numberOfAttributes; i++) {
       String attributeName = "attr"+i;
